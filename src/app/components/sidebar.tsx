@@ -12,20 +12,20 @@ export default function Sidebar({}: SidebarProps) {
                     className="py-8 mb-11 mx-auto"
                     width={122}
                     height={25}
-                    src="/icons/logo.svg"
+                    src="/images/logo.svg"
                     alt="logo"
                 />
                 <ul className="space-y-7">
                     <SidebarItem
                         pathname="/dashboard"
-                        src="/icons/squares.svg"
+                        src="/images/squares.svg"
                         alt="dashboard icon"
                     >
                         Dashboard
                     </SidebarItem>
                     <SidebarItem
                         pathname="/companies"
-                        src="/icons/briefcase.svg"
+                        src="/images/briefcase.svg"
                         alt="companies icon"
                     >
                         Companies
@@ -35,7 +35,7 @@ export default function Sidebar({}: SidebarProps) {
                     <Image
                         width={18}
                         height={18}
-                        src="/icons/arrow-left-on-rectangle.svg"
+                        src="/images/arrow-left-on-rectangle.svg"
                         alt="exit icon"
                     />
                     <span className="font-medium text-white">Exit</span>
