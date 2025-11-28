@@ -1,33 +1,35 @@
 import React from 'react';
-import clsx  from  'clsx';
+import clsx from 'clsx';
+import {CompanyStatus} from "@/src/lib/api";
 
-export  enum  Status {
-    Active = 'active',
-    NotActive = 'notActive',
-    Pending = 'pending',
-    Suspended = 'suspended'
+export interface StatusLabelProps {
+    status: CompanyStatus;
+    disabled?: boolean;
 }
 
-export interface ActiveLabelProps {
-  children: React.ReactNode;
-  status: Status;
-  disabled?: boolean;
-}
+const labelByStatus = {
+    [CompanyStatus.Active]: 'Active',
+    [CompanyStatus.NotActive]: 'Not Active',
+    [CompanyStatus.Pending]: 'Pending',
+    [CompanyStatus.Suspended]: 'Suspended',
+};
 
-export default function StatusLabel({ children, status,disabled }: ActiveLabelProps) {
-    return <div
-        className={clsx(
-            'inline-flex items-center py-1 px-3.5 rounded-3xl text-sm font-medium',
-            status === Status.Active && 'bg-green-100 text-green-800',
-            status === Status.NotActive && 'bg-red-100 text-red-800',
-            status === Status.Pending && 'bg-orange-100 text-orange-800',
-            status === Status.Suspended && 'bg-blue-100 text-blue-800',
-            {
-                ['opacity-75 cursor-not-allowed']: disabled,
-            },
-        )}
-    >
-        <div className="w-1 h-1 mr-2 rounded-full bg-current"></div>
-        {children}
-    </div>;
+export default function StatusLabel({ status, disabled }: StatusLabelProps) {
+    return (
+        <div
+            className={clsx(
+                'inline-flex items-center py-1 px-3.5 rounded-3xl text-sm font-medium',
+                status === CompanyStatus.Active && 'text-green-700 bg-green-100',
+                status === CompanyStatus.NotActive && 'text-red-700 bg-red-100',
+                status === CompanyStatus.Pending && 'text-orange-700 bg-orange-100',
+                status === CompanyStatus.Suspended && 'text-blue-700 bg-blue-100',
+                {
+                    ['opacity-75 cursor-not-allowed']: disabled,
+                },
+            )}
+        >
+            <div className="w-1 h-1 mr-2 rounded-full bg-current" />
+            {labelByStatus[status]}
+        </div>
+    );
 }
